@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Calculator</title>
+	<link rel="stylesheet" type="text/css" href="calc.css">
+	
+</head>
+<body>
+	<div class="container">
+		<div class="calculator">
+			<input class="i1" type="text" id="ansBox" value="0" disabled>
+			<div class="ansCont">
+				<input class="i2" type="text" id="ansBox2" name="" >
+				<input class="i3" type="text" id="ansBox3" name="" >
+			</div>
+			
+			<button class="grey" onclick="onBtnPress(this)">AC</button>
+			<button class="grey" onclick="onBtnPress(this)">del</button>
+			<button class="grey" onclick="onBtnPress(this)"> % </button>
+			<button class="grey"onclick="copynum(this)">/</button>
+			<button id="b7" onclick="onBtnPress(this)">7</button>
+			<button id="b8" onclick="onBtnPress(this)">8</button>
+			<button id="b9" onclick="onBtnPress(this)">9</button>
+			<button class="grey" onclick="copynum(this)">*</button>
+			<button id="b4" onclick="onBtnPress(this)">4</button>
+			<button id="b5"onclick="onBtnPress(this)">5</button>
+			<button id="b6"onclick="onBtnPress(this)">6</button>
+			<button class="grey" onclick="copynum(this)">-</button>
+			<button id="b1" onclick="onBtnPress(this)">1</button>
+			<button id="b2" onclick="onBtnPress(this)">2</button>
+			<button id="b3" onclick="onBtnPress(this)">3</button>
+			<button id="bPlus" class="grey" onclick="copynum(this)">+</button>
+			<button class="grey" onclick="onBtnPress(this)">.</button>
+			<button id="b0" onclick="onBtnPress(this)">0</button>
+			<button id="bEql" onclick="onBtnPress(this)" class="equal">=</button>
+		</div>
+	</div>
+
+<script type="text/javascript">
+			
+		function onBtnPress(x)
+		{	ansBoxVar=document.getElementById("ansBox");
+
+			if(ansBoxVar.value=='0')
+			ansBoxVar.value=x.innerHTML;
+			else
+			ansBoxVar.value+=x.innerHTML;//ansBoxVar.value=ansBoxVar.value+x.innerHTML
+
+				if (x.innerHTML=='AC') 
+				{
+					document.getElementById("ansBox").value=0;
+					document.getElementById("ansBox2").value="";
+					document.getElementById("ansBox3").value="";
+				}
+
+				if(x.innerHTML=='del')
+				{
+					arr="";
+					num=document.getElementById("ansBox").value;
+					//alert(num.length);
+					len=num.length-4;
+					for(i=0;i<len;i++)
+					{
+						arr+=num[i];
+					}
+					document.getElementById("ansBox").value=arr;
+				}
+
+				if(x.innerHTML=='%')
+				{
+					a=parseFloat(document.getElementById('ansBox2').value);
+					ans=a/100;
+					document.getElementById('ansBox').value=ans;
+				}
+
+				if(x.innerHTML=='=')
+				{
+					sign=document.getElementById("ansBox3");
+					a=parseFloat(document.getElementById("ansBox2").value);
+					b=parseFloat(document.getElementById("ansBox").value);
+					if (sign.value=='+') 
+					{
+						answer=a+ b;
+						document.getElementById("ansBox").value=answer;
+						document.getElementById("ansBox2").value+=document.getElementById("ansBox3").value + b;
+						document.getElementById("ansBox3").value="";
+					}
+
+					if (sign.value=='*') 
+					{
+						answer=a*b;
+						document.getElementById("ansBox").value=answer;
+						document.getElementById("ansBox2").value+=document.getElementById("ansBox3").value + b;
+						document.getElementById("ansBox3").value="";
+					}
+
+					if (sign.value=='/') 
+					{
+						answer=a/b;
+						document.getElementById("ansBox").value=answer;
+						document.getElementById("ansBox2").value+=document.getElementById("ansBox3").value + b;
+						document.getElementById("ansBox3").value="";
+					}
+
+					if (sign.value=='-') 
+					{
+						answer=a-b;
+						document.getElementById("ansBox").value=answer;
+						document.getElementById("ansBox2").value+=document.getElementById("ansBox3").value + b;
+						document.getElementById("ansBox3").value="";
+					}
+				}
+		}
+		function copynum(x)
+		{	
+
+			if(document.getElementById('ansBox').value!='0')
+			{
+				document.getElementById("ansBox2").value=document.getElementById("ansBox").value;
+			}
+			document.getElementById("ansBox3").value=x.innerHTML;	
+			document.getElementById("ansBox").value='0';
+		}
+
+		
+	</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
